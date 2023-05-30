@@ -17,3 +17,14 @@ export function fetchArticles() {
       console.log(err);
     });
 }
+
+export function fetchArticleById(article_id) {
+  return api
+    .get(`/articles/${article_id}`)
+    .then(({ data }) => {
+      return data.article;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}

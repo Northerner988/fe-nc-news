@@ -1,3 +1,5 @@
+import { formatDate } from "../../utils/dateFormat";
+
 export default function SingleArticleCard({
   title,
   image,
@@ -7,18 +9,16 @@ export default function SingleArticleCard({
   comments,
   body,
 }) {
-  const formattedDate = new Date(created_at).toLocaleDateString();
-
   return (
     <article className="single-article-card">
-      <p className="article-author">
+      <p className="single-article-author">
         {"Posted by "}
-        {author} {formattedDate}
+        {author} {formatDate(created_at)}
       </p>
-      <h2 className="article-title">{title}</h2>
+      <h2>{title}</h2>
       <img src={image} alt={title} className="single-article-image" />
 
-      <p className="article-body">{body}</p>
+      <p className="single-article-body">{body}</p>
       <p className="article-votes">{votes} votes</p>
       <p className="article-comments">{comments} comments</p>
     </article>

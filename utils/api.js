@@ -22,7 +22,6 @@ export function fetchLatestArticles(order) {
   return api
     .get(`/articles?order=${order}`)
     .then(({ data }) => {
-      console.log(data);
       return data.articles;
     })
     .catch((err) => {

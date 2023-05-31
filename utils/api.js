@@ -18,6 +18,18 @@ export function fetchArticles() {
     });
 }
 
+export function fetchLatestArticles(order) {
+  return api
+    .get(`/articles?order=${order}`)
+    .then(({ data }) => {
+      console.log(data);
+      return data.articles;
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 export function fetchArticleById(article_id) {
   return api
     .get(`/articles/${article_id}`)

@@ -5,6 +5,7 @@ import ArticleList from "./components/ArticleList";
 import SingleArticle from "./components/SingleArticle";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+import Button from "@mui/material/Button";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/articles" element={<ArticleList />} />
-          <Route path="/articles/:articleId" element={<SingleArticle />} />
+          <Route path="/articles/:article_id" element={<SingleArticle />} />
         </Routes>
       </>
     </BrowserRouter>

@@ -1,3 +1,4 @@
+import { formatDate } from "../../utils/dateFormat";
 import { Link } from "react-router-dom";
 
 export default function ArticleCard({
@@ -9,12 +10,10 @@ export default function ArticleCard({
   comments,
   article_id,
 }) {
-  const formattedDate = new Date(created_at).toLocaleDateString();
-
   return (
-    <Link key={article_id} to={`/articles/${article_id}`}>
+    <Link to={`/articles/${article_id}`}>
       <article className="article-card">
-        <p className="article-date">Created on: {formattedDate}</p>
+        <p className="article-date">Created on: {formatDate(created_at)}</p>
         <img src={image} alt={title} className="article-image" />
         <h2 className="article-title">{title}</h2>
         <p className="article-votes">{votes} votes</p>

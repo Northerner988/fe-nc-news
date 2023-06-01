@@ -1,23 +1,20 @@
-import React from "react";
-import NavBar from "./components/NavBar";
+import "./App.css";
 import HomePage from "./components/HomePage";
+import NavBar from "./components/NavBar";
 import ArticleList from "./components/ArticleList";
 import SingleArticle from "./components/SingleArticle";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
-    <BrowserRouter>
-      <>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/articles" element={<ArticleList />} />
-          <Route path="/articles/:articleId" element={<SingleArticle />} />
-        </Routes>
-      </>
-    </BrowserRouter>
+    <>
+      <NavBar />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/articles" element={<ArticleList />} />
+        <Route path="/articles/:article_id" element={<SingleArticle />} />
+      </Routes>
+    </>
   );
 }
 

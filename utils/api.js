@@ -27,3 +27,12 @@ export function fetchCommentsById(article_id) {
     return data.comments;
   });
 }
+
+export function patchArticleVotes(article_id, vote) {
+  const patchBody = {
+    inc_votes: vote,
+  };
+  return api.patch(`/articles/${article_id}`, patchBody).then(({ data }) => {
+    return data.article;
+  });
+}

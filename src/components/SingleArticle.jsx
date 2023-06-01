@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { fetchArticleById } from "../../utils/api";
 import { formatDate } from "../../utils/dateFormat";
 import CommentList from "./CommentList";
+import ArticleVotes from "./ArticleVotes";
 
 export default function SingleArticle() {
   const [currentArticle, setCurrentArticle] = useState({});
@@ -43,10 +44,7 @@ export default function SingleArticle() {
         />
 
         <p className="single-article-body">{currentArticle.body}</p>
-        <p className="article-votes">{currentArticle.votes} votes</p>
-        <p className="article-comments">
-          {currentArticle.comment_count} comments
-        </p>
+        <ArticleVotes article_id={article_id} votes={currentArticle.votes} />
       </article>
       <CommentList article_id={article_id} />
     </main>

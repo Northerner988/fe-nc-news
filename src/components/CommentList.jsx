@@ -20,7 +20,7 @@ export default function CommentsList({ article_id }) {
 
   return (
     <ul className="comment-container">
-      {currentComments.length < 0 ? (
+      {currentComments.length === 0 ? (
         <li>This article has no comments, be the first to add something!</li>
       ) : (
         currentComments.map((comment) => (

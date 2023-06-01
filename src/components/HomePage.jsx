@@ -1,49 +1,46 @@
 import { useState, useEffect } from "react";
 import { fetchLatestArticles } from "../../utils/api";
-import { useSearchParams } from "react-router-dom";
-import { Link } from "react-router-dom";
-
-import LatestArticleCard from "./LatestArticleCard";
 import Header from "./Header";
+import LatestArticleCard from "./LatestArticleCard";
 
 export default function HomePage() {
   const [currentArticles, setCurrentArticles] = useState([]);
-  const [searchParams, setSearchParams] = useSearchParams();
   const [isLoading, setIsLoading] = useState(true);
-
-  const order = "asc";
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
-    fetchLatestArticles(order).then((data) => {
-      setCurrentArticles(data);
-      setIsLoading(false);
-    });
-  }, [order]);
+    fetchLatestArticles()
+      .then((data) => {
+        setCurrentArticles(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+      });
+  }, []);
+
+  if (isLoading) {
+    return <p>Fetching latest articles...</p>;
+  } else if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
-    <section className="homepage-container">
+    <main className="homepage-container">
       <Header />
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        currentArticles.slice(0, 6).map((article) => {
-          return (
-            <Link
-              key={article.article_id}
-              to={`/articles/${article.article_id}`}
-            >
-              <LatestArticleCard
-                key={article.article_id}
-                title={article.title}
-                image={article.article_img_url}
-                author={article.author}
-                topic={article.topic}
-              />
-            </Link>
-          );
-        })
-      )}
-    </section>
+      {currentArticles.slice(0, 6).map((article) => {
+        return (
+          <LatestArticleCard
+            key={article.article_id}
+            article_id={article.article_id}
+            title={article.title}
+            image={article.article_img_url}
+            author={article.author}
+            topic={article.topic}
+          />
+        );
+      })}
+    </main>
   );
 }

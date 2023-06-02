@@ -53,7 +53,6 @@ export default function CommentAdder({ article_id, setCurrentComments }) {
       <button type="submit" disabled={commentPosted}>
         Submit
       </button>
-      {commentPosted && <p className="comment-valid">{commentPosted}</p>}
       {commentPosted && <p className="comment-valid"> Comment posted!</p>}
       {error && <p className="comment-invalid">Error: {error.message}</p>}
     </form>

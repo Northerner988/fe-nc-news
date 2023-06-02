@@ -36,3 +36,15 @@ export function patchArticleVotes(article_id, vote) {
     return data.article;
   });
 }
+
+export function postArticleComment(article_id, comment) {
+  const postBody = {
+    username: comment.username,
+    body: comment.body,
+  };
+  return api
+    .post(`/articles/${article_id}/comments`, postBody)
+    .then(({ data }) => {
+      return data.comment;
+    });
+}

@@ -12,6 +12,7 @@ export default function CommentsList({ article_id }) {
     setIsLoading(true);
     fetchCommentsById(article_id).then((data) => {
       setCurrentComments(data);
+      console.log(data);
       setIsLoading(false);
     });
   }, [article_id]);
@@ -35,7 +36,12 @@ export default function CommentsList({ article_id }) {
               setCurrentComments={setCurrentComments}
             />
             {currentComments.map((comment) => (
-              <CommentCard key={comment.comment_id} comment={comment.body} />
+              <CommentCard
+                key={comment.comment_id}
+                author={comment.author}
+                created_at={comment.created_at}
+                comment={comment.body}
+              />
             ))}
           </>
         )}

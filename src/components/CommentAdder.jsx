@@ -33,7 +33,7 @@ export default function CommentAdder({ article_id, setCurrentComments }) {
       })
       .catch((err) => {
         setCommentPosted(false);
-        setError("Something went wrong, please try again later!");
+        setError(err);
       });
   };
 
@@ -50,9 +50,7 @@ export default function CommentAdder({ article_id, setCurrentComments }) {
           placeholder="Add your comment here..."
         ></textarea>
       </label>
-      <button type="submit" disabled={commentPosted}>
-        Submit
-      </button>
+      <button type="submit">Submit</button>
       {commentPosted && <p className="comment-valid"> Comment posted!</p>}
       {error && <p className="comment-invalid">Error: {error.message}</p>}
     </form>

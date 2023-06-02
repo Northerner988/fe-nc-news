@@ -169,6 +169,21 @@
   background-color: rgb(206, 212, 218);
   border-radius: 5px;
   box-shadow: 0 2px 4px 0 rgb(158, 171, 201);
+  position: relative;
+}
+
+.comment-author {
+  font-size: 0.9rem;
+  position: absolute;
+  top: 8px;
+  right: 16px;
+}
+
+.comment-date {
+  font-size: 0.9rem;
+  position: absolute;
+  top: 8px;
+  left: 16px;
 }
 
 .article-votes {

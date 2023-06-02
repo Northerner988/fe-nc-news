@@ -21,3 +21,18 @@ export function fetchArticleById(article_id) {
     return data.article;
   });
 }
+
+export function fetchCommentsById(article_id) {
+  return api.get(`/articles/${article_id}/comments`).then(({ data }) => {
+    return data.comments;
+  });
+}
+
+export function patchArticleVotes(article_id, vote) {
+  const patchBody = {
+    inc_votes: vote,
+  };
+  return api.patch(`/articles/${article_id}`, patchBody).then(({ data }) => {
+    return data.article;
+  });
+}

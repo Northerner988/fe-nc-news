@@ -1,3 +1,4 @@
+import { formatDate } from "../../utils/dateFormat";
 import { Link } from "react-router-dom";
 import { formatDate } from "../../utils/dateFormat";
 
@@ -11,7 +12,7 @@ export default function ArticleCard({
   article_id,
 }) {
   return (
-    <Link key={article_id} to={`/articles/${article_id}`}>
+    <Link to={`/articles/${article_id}`}>
       <article className="article-card">
         <p className="article-date">Created on: {formatDate(created_at)}</p>
         <img src={image} alt={title} className="article-image" />

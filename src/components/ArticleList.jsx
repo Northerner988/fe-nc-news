@@ -2,24 +2,33 @@ import { useState, useEffect } from "react";
 import { fetchArticles } from "../../utils/api";
 import ArticleCard from "./ArticleCard";
 
-export default function ArticlesList() {
+export default function ArticleList() {
   const [currentArticles, setCurrentArticles] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setIsLoading(true);
-    fetchArticles().then((data) => {
-      setCurrentArticles(data);
-      setIsLoading(false);
-    });
+    fetchArticles()
+      .then((data) => {
+        setCurrentArticles(data);
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setError(err);
+      });
   }, []);
+
+  if (isLoading) {
+    return <p>Fetching articles...</p>;
+  } else if (error) {
+    return <p>{error}</p>;
+  }
 
   return (
     <main className="articles-container">
-      {isLoading ? (
-        <p>Fetching articles...</p>
-      ) : (
-        currentArticles.map((article) => (
+      {currentArticles.map((article) => {
+        return (
           <ArticleCard
             key={article.article_id}
             article_id={article.article_id}
@@ -30,8 +39,9 @@ export default function ArticlesList() {
             votes={article.votes}
             comments={article.comment_count}
           />
-        ))
-      )}
+        );
+      })}
     </main>
   );
 }
+

@@ -16,6 +16,10 @@ export default function CommentsList({ article_id }) {
     });
   }, [article_id]);
 
+  const addNewComment = (newComment) => {
+    setCurrentComments((currComments) => [newComment, ...currComments]);
+  };
+
   if (isLoading) {
     return <p>Fetching comments...</p>;
   }
@@ -32,6 +36,7 @@ export default function CommentsList({ article_id }) {
           <>
             <CommentAdder
               article_id={article_id}
+              addNewComment={addNewComment}
               setCurrentComments={setCurrentComments}
             />
             {currentComments.map((comment) => (

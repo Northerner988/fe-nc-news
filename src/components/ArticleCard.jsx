@@ -1,6 +1,5 @@
 import { formatDate } from "../../utils/dateFormat";
 import { Link } from "react-router-dom";
-import { formatDate } from "../../utils/dateFormat";
 
 export default function ArticleCard({
   title,

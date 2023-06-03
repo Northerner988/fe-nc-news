@@ -3,13 +3,14 @@ import { UserContext } from "./User";
 import { formatDate } from "../../utils/dateFormat";
 import { postArticleComment } from "../../utils/api";
 
-export default function CommentAdder({ article_id, setCurrentComments }) {
+export default function CommentAdder({
+  article_id,
+  addNewComment,
+  setCurrentComments,
+}) {
   const [newComment, setNewComment] = useState("");
-  const [commentPosted, setCommentPosted] = useState({
-    posted: false,
-    disableBtn: false,
-  });
-
+  const [commentPosted, setCommentPosted] = useState(false);
+  const [disableBtn, setDisableBtn] = useState(false);
   const [error, setError] = useState(null);
   const { user } = useContext(UserContext);
 
@@ -27,34 +28,37 @@ export default function CommentAdder({ article_id, setCurrentComments }) {
       comment_id: 0,
       author: user.username,
       created_at: formatDate(new Date()),
-      comment: newComment,
+      body: newComment,
     };
 
-    setCurrentComments((currComments) => {
-      setNewComment("");
-      setCommentPosted({ posted: true, disableBtn: true });
-      return [userComment, ...currComments];
-    });
+    addNewComment(userComment);
+    setNewComment("");
+    setDisableBtn(true);
 
     postArticleComment(article_id, {
       username: user.username,
       body: newComment,
     })
       .then((newCommentFromApi) => {
-        setCurrentComments((currComments) =>
-          currComments.map((comment) =>
+        setCurrentComments((currComments) => {
+          const updatedComments = currComments.map((comment) =>
             comment.comment_id === 0 ? newCommentFromApi : comment
-          )
-        );
-        setCommentPosted({ posted: true, disableBtn: false });
+          );
+          return updatedComments;
+        });
+        setCommentPosted(true);
+        setDisableBtn(false);
       })
       .catch((err) => {
         setError(err);
-        setCurrentComments((currComments) =>
-          currComments.filter(
+        setCurrentComments((currComments) => {
+          const filteredComments = currComments.filter(
             (comment) => comment.comment_id !== userComment.comment_id
-          )
-        );
+          );
+          return filteredComments;
+        });
+        setCommentPosted(false);
+        setDisableBtn(false);
       });
   };
 
@@ -71,12 +75,10 @@ export default function CommentAdder({ article_id, setCurrentComments }) {
           placeholder="Add your comment here..."
         ></textarea>
       </label>
-      <button type="submit" disabled={commentPosted.disableBtn}>
+      <button type="submit" disabled={disableBtn}>
         Submit
       </button>
-      {commentPosted.posted && (
-        <p className="comment-valid"> Comment posted!</p>
-      )}
+      {commentPosted && <p className="comment-valid"> Comment posted!</p>}
       {error && <p className="comment-invalid">Error: {error.message}</p>}
     </form>
   );

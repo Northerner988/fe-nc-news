@@ -12,7 +12,6 @@ export default function CommentsList({ article_id }) {
     setIsLoading(true);
     fetchCommentsById(article_id).then((data) => {
       setCurrentComments(data);
-      console.log(data);
       setIsLoading(false);
     });
   }, [article_id]);

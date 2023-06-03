@@ -36,3 +36,11 @@ export function patchArticleVotes(article_id, vote) {
     return data.article;
   });
 }
+
+export function postArticleComment(article_id, postComment) {
+  return api
+    .post(`/articles/${article_id}/comments`, postComment)
+    .then(({ data }) => {
+      return data.comment;
+    });
+}

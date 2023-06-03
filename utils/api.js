@@ -37,13 +37,9 @@ export function patchArticleVotes(article_id, vote) {
   });
 }
 
-export function postArticleComment(article_id, comment) {
-  const postBody = {
-    username: comment.username,
-    body: comment.body,
-  };
+export function postArticleComment(article_id, postComment) {
   return api
-    .post(`/articles/${article_id}/comments`, postBody)
+    .post(`/articles/${article_id}/comments`, postComment)
     .then(({ data }) => {
       return data.comment;
     });

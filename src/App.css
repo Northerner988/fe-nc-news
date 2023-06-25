@@ -5,51 +5,6 @@
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 0.5em #646cffaa);
-}
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 0.5em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.nav {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  height: 60px;
-  padding: 10px 0;
-  background-color: rgb(24, 54, 66);
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1;
-}
-
 .homepage-container {
   display: flex;
   flex-wrap: wrap;
@@ -172,6 +127,13 @@
   position: relative;
 }
 
+.comment-body {
+  font-size: 1rem;
+  line-height: 1.5;
+  text-align: center;
+  padding-top: 20px;
+}
+
 .comment-author {
   font-size: 0.9rem;
   position: absolute;
@@ -215,4 +177,72 @@
 .comment-valid {
   color: green;
   font-size: 1.2rem;
+}
+
+.dropdown-container {
+  position: relative;
+  width: 20%;
+  background-color: rgb(225, 110, 110);
+}
+
+.dropdown-header {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 40px;
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  z-index: 1;
+}
+
+.dropdown-item {
+  padding: 5px;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 60px;
+  padding: 8px 0;
+  background-color: rgb(24, 54, 66);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+.nav__logo {
+  font-size: 64px;
+  margin-left: 10px;
+  padding-top: 20px;
+  align-self: center;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  list-style: none;
+  flex-grow: 1;
+}
+
+.nav-links li {
+  margin: 0 30px;
+  width: 35%;
 }

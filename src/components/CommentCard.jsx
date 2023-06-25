@@ -8,7 +8,7 @@ export default function CommentCard({ comment, author, created_at }) {
     <div className="comment-card">
       <p className="comment-author">{author}</p>
       <p className="comment-date">{formatDate(created_at)}</p>
-      <p>{comment}</p>
+      <p className="comment-body">{comment}</p>
       <Button
         variant="outlined"
         color="success"

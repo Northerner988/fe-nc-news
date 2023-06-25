@@ -3,29 +3,7 @@ import { fetchLatestArticles } from "../../utils/api";
 import Header from "./Header";
 import LatestArticleCard from "./LatestArticleCard";
 
-export default function HomePage() {
-  const [currentArticles, setCurrentArticles] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    setIsLoading(true);
-    fetchLatestArticles()
-      .then((data) => {
-        setCurrentArticles(data);
-        setIsLoading(false);
-      })
-      .catch((err) => {
-        setError(err);
-      });
-  }, []);
-
-  if (isLoading) {
-    return <p>Fetching latest articles...</p>;
-  } else if (error) {
-    return <p>{error}</p>;
-  }
-
+export default function HomePage({ currentArticles }) {
   return (
     <main className="homepage-container">
       <Header />
